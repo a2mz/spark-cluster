@@ -19,6 +19,8 @@ services:
      - 7199:7199 
      - 9160:9160 
      - 9042:9042
+     volumes:
+     - /tmp/docker/cassandra/data:/var/lib/cassandra
 
  zookeeper:
     image: zookeeper:3.4
@@ -81,7 +83,7 @@ services:
       - /tmp/docker/spark-master/conf:/conf
       - /tmp/docker/spark-master/data:/tmp/data
 
- spark-worker:
+ spark-worker-1:
     image: a2mz/spark-cluster
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     networks:
