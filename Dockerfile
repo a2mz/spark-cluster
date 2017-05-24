@@ -20,11 +20,9 @@ RUN curl -s $SPARK_ARCHIVE | tar -xz -C /usr/local/
 ENV SPARK_HOME /usr/local/spark-2.1.0-bin-hadoop2.7
 ENV PATH $PATH:$SPARK_HOME/bin
 
-RUN   echo 'spark.deploy.recoveryMode=ZOOKEEPER' > ha.conf && \
-      echo 'spark.deploy.zookeeper.url=zookeeper:2181' >> ha.conf && \
-      echo 'spark.deploy.zookeeper.dir=/spark' >> ha.conf
-      
-COPY ha.conf $SPARK_HOME/conf
+RUN   echo 'spark.deploy.recoveryMode=ZOOKEEPER' > $SPARK_HOME/conf/ha.conf && \
+      echo 'spark.deploy.zookeeper.url=zookeeper:2181' >> $SPARK_HOME/conf/ha.conf && \
+      echo 'spark.deploy.zookeeper.dir=/spark' >> $SPARK_HOME/conf/ha.conf
 
 EXPOSE 4040 6066 7077 8080
 
