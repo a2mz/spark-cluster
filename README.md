@@ -7,8 +7,10 @@
 - spark-worker1
 - spark-worker2
 
-1. edit cluster.yml, add real IP to KAFKA_ADVERTISED_HOST_NAME 
+0.
+sudo ifconfig lo0 alias 10.0.0.1 up
 
+1. 
 docker-compose -f cluster.yml up
 
 2.

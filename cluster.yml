@@ -47,7 +47,7 @@ services:
       - 7203:7203
     environment:
       ZOOKEEPER_IP: zookeeper
-      KAFKA_ADVERTISED_HOST_NAME: 10.10.11.103
+      KAFKA_ADVERTISED_HOST_NAME: 10.0.0.1
       KAFKA_CREATE_TOPICS: "testrun:1:1"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
@@ -95,7 +95,7 @@ services:
     environment:
       SPARK_CONF_DIR: /conf
       SPARK_PUBLIC_DNS: 0.0.0.0
-      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_CORES: 4
       SPARK_WORKER_MEMORY: 1g
       SPARK_WORKER_PORT: 8881
       SPARK_WORKER_WEBUI_PORT: 8081
@@ -124,7 +124,7 @@ services:
     environment:
       SPARK_CONF_DIR: /conf
       SPARK_PUBLIC_DNS: 0.0.0.0
-      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_CORES: 4
       SPARK_WORKER_MEMORY: 1g
       SPARK_WORKER_PORT: 8882
       SPARK_WORKER_WEBUI_PORT: 8082
