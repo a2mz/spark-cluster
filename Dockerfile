@@ -3,13 +3,15 @@ FROM ubuntu:14.04
 RUN apt-get update && apt-get -y install curl
 
 # JAVA
-ARG JAVA_ARCHIVE=http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/server-jre-8u121-linux-x64.tar.gz
-ENV JAVA_HOME /usr/local/jdk1.8.0_121
-
+ENV JAVA_MAJOR_VERSION 8
+ENV JAVA_UPDATE_VERSION 131
+ENV JAVA_BUILD_NUMBER 11
+ENV JAVA_HOME /usr/local/jdk1.${JAVA_MAJOR_VERSION}.0_${JAVA_UPDATE_VERSION}
 ENV PATH $PATH:$JAVA_HOME/bin
 RUN curl -sL --retry 3 --insecure \
-  --header "Cookie: oraclelicense=accept-securebackup-cookie;" $JAVA_ARCHIVE \
-  | tar -xz -C /usr/local/ && ln -s $JAVA_HOME /usr/local/java 
+  --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
+  "http://download.oracle.com/otn-pub/java/jdk/${JAVA_MAJOR_VERSION}u${JAVA_UPDATE_VERSION}-b${JAVA_BUILD_NUMBER}/server-jre-${JAVA_MAJOR_VERSION}u${JAVA_UPDATE_VERSION}-linux-x64.tar.gz" \
+   | tar -xz -C /usr/local/ && ln -s $JAVA_HOME /usr/local/java && rm -rf $JAVA_HOME/man
 
 # SPARK
 ARG SPARK_ARCHIVE=http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.7.tgz
