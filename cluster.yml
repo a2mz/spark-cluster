@@ -19,7 +19,7 @@ services:
      - 7199:7199 
      - 9160:9160 
      - 9042:9042
-     volumes:
+    volumes:
      - /tmp/docker/cassandra/data:/var/lib/cassandra
 
  zookeeper:
