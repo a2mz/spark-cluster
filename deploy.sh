@@ -23,5 +23,5 @@ docker exec -it `docker ps | grep spark-master | awk '{print $1}'` /bin/bash bin
 --supervise \
 --deploy-mode cluster \
 --executor-memory 1G \
---total-executor-cores 2 \
+--total-executor-cores 1 \
   /jar/$JARNAME-$RAND.jar

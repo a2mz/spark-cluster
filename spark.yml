@@ -4,56 +4,6 @@ networks:
   sparknet:
     driver: bridge
 
-services:
-
- cassandra:
-    image: cassandra:3.0
-    hostname: cassandra
-    networks:
-     - sparknet
-    expose:
-     - 7199
-     - 9160
-     - 9042
-    ports:
-     - 7199:7199
-     - 9160:9160
-     - 9042:9042
-    volumes:
-     - /tmp/docker/cassandra/data:/var/lib/cassandra
-
- zookeeper:
-    image: zookeeper:3.4
-    hostname: zookeeper
-    networks:
-     - sparknet
-    expose:
-     - 2181
-    ports:
-     - 2181:2181
-
- kafka:
-    image: ches/kafka
-    hostname: kafka
-    networks:
-     - sparknet
-    depends_on:
-     - "zookeeper"
-    expose:
-      - 9092
-      - 7203
-    ports:
-      - 9092:9092
-      - 7203:7203
-    environment:
-      ZOOKEEPER_IP: zookeeper
-      KAFKA_ADVERTISED_HOST_NAME: 10.0.0.1
-      KAFKA_CREATE_TOPICS: "testrun:1:1"
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
-    volumes:
-      - /tmp/docker/kafka/data:/data
-      - /tmp/docker/kafka/logs:/logs
 
  spark-master:
     image: a2mz/spark-cluster
