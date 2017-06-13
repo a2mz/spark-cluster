@@ -1,5 +1,5 @@
-# spark-cluster-services
-# for Mac OS
+# spark-cluster-services #
+## for Mac OS ##
 
 - cassandra
 - cassandra-2
@@ -17,7 +17,8 @@ All sparks nodes share one path "/jar" on outside Docker it's in "/tmp/docker/sp
 Services save their state in /tmp/docker dir. Remove it if you want to clear all data.
 
 
-0. Prepare (need sseudo real ip)
+
+# 0. Prepare (need pseudo real ip) #
 ```
 
 sudo ifconfig lo0 alias 10.0.0.1 up
@@ -25,7 +26,7 @@ sudo ifconfig lo0 alias 10.0.0.1 up
 ```
 
 
-1. # Examples # 
+# 1. Examples # 
 
 ## Run full infrastructure ##
 
