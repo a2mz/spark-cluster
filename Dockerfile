@@ -1,5 +1,7 @@
 FROM ubuntu:14.04
 
+MAINTAINER Morozov Oleksandr <mz.oleksandr@gmail.com>
+
 RUN apt-get update && apt-get -y install curl
 
 # JAVA
@@ -18,7 +20,8 @@ ARG SPARK_ARCHIVE=http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.7
 ARG POSTGRES=http://central.maven.org/maven2/org/postgresql/postgresql/9.4.1211/postgresql-9.4.1211.jar
 
 RUN curl -s $SPARK_ARCHIVE | tar -xz -C /usr/local/ && \
-    curl -s $POSTGRES > /usr/local/spark-2.1.0-bin-hadoop2.7/jars/postgresql-9.4.1211.jar
+    curl -s $POSTGRES > /usr/local/spark-2.1.0-bin-hadoop2.7/jars/postgresql-9.4.1211.jar && \
+    mkdir -p /tmp/spark-events
 
 ENV SPARK_HOME /usr/local/spark-2.1.0-bin-hadoop2.7
 ENV PATH $PATH:$SPARK_HOME/bin
