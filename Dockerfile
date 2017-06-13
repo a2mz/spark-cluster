@@ -17,7 +17,7 @@ RUN curl -sL --retry 3 --insecure \
 ARG SPARK_ARCHIVE=http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.7.tgz
 ARG POSTGRES=http://central.maven.org/maven2/org/postgresql/postgresql/9.4.1211/postgresql-9.4.1211.jar
 
-RUN curl -s $SPARK_ARCHIVE | tar -xz -C /usr/local/; \
+RUN curl -s $SPARK_ARCHIVE | tar -xz -C /usr/local/ && \
     curl -s $POSTGRES > /usr/local/spark-2.1.0-bin-hadoop2.7/jars/postgresql-9.4.1211.jar
 
 ENV SPARK_HOME /usr/local/spark-2.1.0-bin-hadoop2.7
